@@ -1,0 +1,34 @@
+<div class="login-view">
+<div class='bold-line'></div>
+<div class='container-register'>
+  <div class='window'>
+    <div class='overlay'></div>
+    <div class='content-login'>
+      <div class='welcome'>Đăng kí</div>
+      <div class="error-message" >
+                    {{errorMsg}}
+      </div>
+      <form #freg="ngForm" (ngSubmit)="register(freg)" novalidate>
+        <div class='input-fields'>
+          <div class="display-flex">
+            <input type='text' placeholder='Họ và Tên' class='input-line full-width' name="fullName" ngModel/>
+            <input type='text' placeholder='Tên đăng nhập' class='input-line full-width' name="userName" ngModel/>
+            
+          </div>
+          <div class="display-flex">
+            <input type='text' placeholder='Số điện thoại' class='input-line full-width' name="phoneNumber" ngModel/>
+            <input type='password' placeholder='Mật khẩu' class='input-line full-width' name="password" ngModel/>
+          </div>
+          <div class="display-flex">
+            <input type='text' placeholder='Email' class='input-line full-width' name="email" ngModel/>
+            <input type='password' placeholder='Xác nhận mật khẩu' class='input-line full-width' name="confirmPassword" ngModel/>
+          </div>
+        </div>
+        <div class='spacing spacing2'>đã có tài khoản <a routerLink="/login" class="highlight">đăng nhập</a></div>
+        <!--  -->
+        <div><button class='ghost-round full-width' type="submit">Đăng kí</button></div>
+      </form>
+    </div>
+    
+  </div>
+</div>

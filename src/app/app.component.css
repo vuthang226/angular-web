@@ -1,0 +1,31 @@
+.header-container{
+    height: 60px;
+
+    background: #3594b2;
+    color: white;
+}
+.header-icon{
+  width: 150px;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+.header-item{
+  margin-left: 12px;
+  font-size: 14px;
+}
+.header-account{
+  margin-right: 20px;
+}
+.display-flex{
+    display: flex;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-spacebetween{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,29 @@
+<button class="btn-add btn btn-primary" (click)="openDialog()">Thêm mới</button>
+<table class="table table-striped" style="margin-top: 20px;">
+    <thead>
+        <tr>
+          <th scope="col">Tên đăng nhập</th>
+          <th scope="col">Họ và Tên</th>
+          
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Mail</th>
+          <th scope="col">Quyền</th>
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of datas">
+          <th scope="row">{{user.userName}}</th>
+          <td>{{user.fullName}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.email}}</td>
+          <td><div class="btn-table btn btn-success" *ngIf="user.isAdmin">Admin</div></td>
+          <td><button class="btn-table btn btn-warning">Cập nhật</button>
+          <button class="btn-table btn btn-danger">Xóa</button>
+          <button class="btn-table btn btn-info">Gán</button>
+          </td>
+        </tr>
+        
+      </tbody>
+  </table>
+ 
