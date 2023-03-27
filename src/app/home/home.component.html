@@ -1,5 +1,46 @@
-<button class="btn-add btn btn-primary" (click)="openDialog()">Thêm mới</button>
-<table class="table table-striped" style="margin-top: 20px;">
+<div class="header-container flex-spacebetween">
+  <div class="header-menu display-flex">
+      <div class="header-icon flex-center" >
+        <div style="font-family:fontPacifico" routerLink="">Angular</div>
+      </div>
+      <div class="header-item flex-center">
+        <div routerLink="">Trang chủ</div>
+      </div>
+      
+  </div>
+  <div class="header-account flex-center" >
+    <div class="user-info" *ngIf="isLogin">
+      {{userName}}
+    </div>
+    <div class="logout" (click)="logout()" style="margin-left:10px ;" *ngIf="isLogin">
+      Thoát
+    </div>
+    <div class="login-register" *ngIf="!isLogin" style="display: flex;">
+      <div class="login-btn" routerLink="/login">Đăng nhập</div>/
+      <div class="register-btn" routerLink="/register"> Đăng kí</div>
+    </div>
+      
+  </div>
+  
+  
+</div>
+
+<div class="menu-tool" style="display: flex;justify-content: space-between; margin-top: 20px;margin-bottom: 20px;">
+  <div class="menu-left" style="display: flex;" >
+    <!-- <select class="form-select" style="margin-left: 20px;" [(ngModel)]="pageSize" (change)="getByPage()">
+      <option value="10" selected>10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select> -->
+    <button type="button" class="btn btn-light" style="margin-left: 10px;" (click)="getByPage()">Reset</button>
+    <!-- <button type="button" class="btn btn-light">Light</button> -->
+  </div>
+  <div class="menu-right" >
+    <button class="btn-add btn btn-primary" (click)="openDialogAdd()">Thêm mới</button>
+  </div>
+</div>
+<div class="content-table" >
+<table class="table table-striped"  >
     <thead>
         <tr>
           <th scope="col">Tên đăng nhập</th>
@@ -11,19 +52,33 @@
           <th scope="col">Hành động</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         <tr *ngFor="let user of datas">
           <th scope="row">{{user.userName}}</th>
           <td>{{user.fullName}}</td>
           <td>{{user.phoneNumber}}</td>
           <td>{{user.email}}</td>
           <td><div class="btn-table btn btn-success" *ngIf="user.isAdmin">Admin</div></td>
-          <td><button class="btn-table btn btn-warning">Cập nhật</button>
-          <button class="btn-table btn btn-danger">Xóa</button>
-          <button class="btn-table btn btn-info">Gán</button>
+          <td><button class="btn-table btn btn-warning" (click)="openDialogUpdate(user.id)">Cập nhật</button>
+          <button class="btn-table btn btn-danger" (click)="openDialogDelete(user.id,user.userName,true)">Xóa</button>
+          <button class="btn-table btn btn-info" (click)="openDialogDelete(user.id,user.userName,false)">Gán</button>
           </td>
         </tr>
         
       </tbody>
   </table>
+</div>
+
+  <mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="totalRecords"
+               [pageSize]="pageSize"
+               [disabled]="disabled"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageSizeOptions]="[10,15,20]"
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>
  

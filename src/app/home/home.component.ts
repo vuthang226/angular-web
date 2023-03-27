@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { UserService } from '../service/user/user.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import {PageEvent} from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,33 +14,96 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 })
 export class HomeComponent {
   datas:any[]=[];
-  pageIndex:Number = 1;
-  pageSize:Number = 10;
-  
-
-  constructor(private userService: UserService,private dialog:MatDialog) { }
-
+  pageIndex = 0;
+  pageSize = 10;
+  totalRecords = 50;
+  pageSizeOptions = [5, 10, 25];
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+  pageEvent: PageEvent;
+  constructor(private userService: UserService,private dialog:MatDialog,public auth:AuthService,private router:Router) { }
+  isLogin = this.auth.isAuthenticated();;
+  userName:any;
   ngOnInit(): void {
     this.getByPage();
+    this.userName=this.auth.getUserName()?.toString();
   } 
 
+  logout(){
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
+    this.isLogin = false;
+  }
+
+  
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.totalRecords = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.getByPage();
+  }
+
   getByPage(){
-    this.userService.getByPage(this.pageSize,this.pageIndex).subscribe((res:any)=>{
+    this.userService.getByPage(this.pageSize,this.pageIndex+1).subscribe((res:any)=>{
       this.datas = res.items;
+      this.pageSize = res.pageSize;
+      this.totalRecords = res.totalRecords;
+      this.pageIndex = res.pageIndex-1;
       console.log(res);
     })
   }
 
-  openDialog() {
+  openDialogAdd() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+
     dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
+      id: '',
+      isAdd: true
     };
-    this.dialog.open(UserDialogComponent, dialogConfig);
+    this.dialog.open(UserDialogComponent, dialogConfig).afterClosed().subscribe(result => {
+      if(result){
+        this.getByPage();
+      }
+    });
+  }
+
+  openDialogUpdate(id:string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: id,
+      isAdd: false
+    };
+    this.dialog.open(UserDialogComponent, dialogConfig).afterClosed().subscribe(result => {
+      if(result){
+        this.getByPage();
+      }
+    });
+  }
+
+  openDialogDelete(id:string,userName:string,isDelete:boolean) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id:id,
+      userName: userName,
+      isDelete:isDelete
+    };
+    this.dialog.open(DeleteDialogComponent, dialogConfig).afterClosed().subscribe(result => {
+      if(result){
+        this.getByPage();
+      }
+    });
   }
 
 }

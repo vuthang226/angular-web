@@ -8,8 +8,8 @@ import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-  //canActivate:[DefGuard]
-  { path:'', component:HomeComponent,},
+  //
+  { path:'', component:HomeComponent,canActivate:[DefGuard]},
   { path:'login', component:LoginComponent},
   { path:'register', component:RegisterComponent},
 ];

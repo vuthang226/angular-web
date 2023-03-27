@@ -4,3 +4,16 @@
   z-index: 10;
 }
 .dialog */
+.display-flex{
+  display:flex
+}
+input{
+  height:35px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 300px;
+  border:1px solid rgb(129, 129, 129) ;
+}
+label{
+  font-weight: 500;
+}

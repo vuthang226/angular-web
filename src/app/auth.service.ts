@@ -22,6 +22,10 @@ export class AuthService {
     ) 
   }
 
+  public getUserName(){
+    return localStorage.getItem('userName');
+  }
+
   public register(query:object){    
     
     const headers = new HttpHeaders().set('Content-Type', 'application/json') ;
@@ -33,6 +37,8 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+ 
   }
 
 

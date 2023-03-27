@@ -10,7 +10,7 @@
   .login-view{
     background: url('../../assets/img/backgroundLogin.jpg') no-repeat fixed;
     background-size: cover;
-    height: calc(100vh - 60px);
+    height: calc(100vh);
   }
   .highlight:hover {
     color: #fff;

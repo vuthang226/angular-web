@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -8,9 +8,13 @@ import { NgForm } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   errorMsg:string = '';
   constructor(private auth:AuthService,private router:Router){}
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+  }
   register(f: NgForm) {
     console.log(f)
     const data:object = {
