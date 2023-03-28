@@ -1,8 +1,8 @@
-export class User{
+export interface User{
     id:number;
-    name:string;
-    price: number;
-    quantity: number;
-    img: string;
-    description: string;
+    fullName:string;
+    email: string;
+    phoneNumber: number;
+    userName: string;
+    isAdmin: boolean;
 }

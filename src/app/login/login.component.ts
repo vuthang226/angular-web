@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
+    localStorage.removeItem('isAdmin');
+
   }
   onSubmit(f: NgForm) {
     const data:object = {userName:f.value.userName,password:f.value.password,rememberMe:true};
@@ -23,7 +25,10 @@ export class LoginComponent implements OnInit{
       if(d.success){
         
         localStorage.setItem('token', d.data.jwtToken);
-        localStorage.setItem('userName', d.data.user.userName);
+        localStorage.setItem('userName', d.data.userVm.userName);
+        localStorage.setItem('isAdmin', d.data.userVm.isAdmin);
+
+
         this.router.navigateByUrl('/');
       }else{
         this.errorMsg = d.message;

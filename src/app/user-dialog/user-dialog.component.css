@@ -5,15 +5,14 @@
 }
 .dialog */
 .display-flex{
-  display:flex
+  display:flex;
+  justify-content: space-between;
+  width: 550px;
 }
-input{
-  height:35px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  width: 300px;
-  border:1px solid rgb(129, 129, 129) ;
-}
+.mat-mdc-form-field{
+  width: 48%;
+} 
+
 label{
   font-weight: 500;
 }

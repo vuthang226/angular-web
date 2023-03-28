@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
+
 import {MatDialogModule,MatDialogRef,MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,9 +44,11 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     MatSnackBarModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule
     
   ],
   providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },{
