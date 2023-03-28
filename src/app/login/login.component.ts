@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit{
   }
   onSubmit(f: NgForm) {
     const data:object = {userName:f.value.userName,password:f.value.password,rememberMe:true};
+    if(f.form.valid){
     this.auth.login(data).subscribe(res => {
       console.log(res);
       var d = JSON.parse(res);
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit{
       }else{
         this.errorMsg = d.message;
       }
+     
       
 
     },
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit{
     }
 
     );
+  }
   }
   
 

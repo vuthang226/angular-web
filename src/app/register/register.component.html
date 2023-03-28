@@ -8,25 +8,52 @@
       <div class="error-message" >
                     {{errorMsg}}
       </div>
-      <form #freg="ngForm" (ngSubmit)="register(freg)" novalidate>
+      <form [formGroup]="form">
         <div class='input-fields'>
           <div class="display-flex">
-            <input type='text' placeholder='Họ và Tên' class='input-line full-width' name="fullName" ngModel/>
-            <input type='text' placeholder='Tên đăng nhập' class='input-line full-width' name="userName" ngModel/>
+            
+            <mat-form-field>
+              <mat-label>Họ và tên</mat-label>
+              <input type='text'  class='input-line full-width' formControlName="fullName" matInput/>
+              <mat-error>Bạn cần điền trường này.</mat-error>
+            </mat-form-field>  
+            <mat-form-field>
+              <mat-label>Tài khoản</mat-label>
+              <input type='text'  class='input-line full-width' formControlName="userName" matInput/>
+              <mat-error>Bạn cần điền trường này.</mat-error>
+            </mat-form-field>  
+          </div>
+          <div class="display-flex">
+            <mat-form-field>
+              <mat-label>Số điện thoại</mat-label>
+              <input type='text'  class='input-line full-width'  formControlName="phoneNumber" matInput/>
+              <mat-error>Bạn cần điền trường này.</mat-error>
+            </mat-form-field>  
+            <mat-form-field>
+              <mat-label>Mật khẩu</mat-label>
+              <input type='password'  class='input-line full-width'  formControlName="password" matInput/>   
+              <mat-error>Bạn cần điền trường này.</mat-error>      
+            </mat-form-field>  
+     
+          </div>
+          <div class="display-flex">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input type='text'  class='input-line full-width' formControlName="email" matInput/>     
+              <mat-error *ngIf="form.controls['email'].errors?.['required']">Bạn cần điền trường này.</mat-error>
+              <mat-error *ngIf="form.controls['email'].errors?.['email']">Email không hợp lệ.</mat-error>  
+            </mat-form-field>  
+            <mat-form-field>
+              <mat-label>Xác nhận mật khẩu</mat-label>
+              <input type='password'  class='input-line full-width' formControlName="confirmPassword" matInput/>
+              <mat-error>Bạn cần điền trường này.</mat-error>
+            </mat-form-field>  
         
-          </div>
-          <div class="display-flex">
-            <input type='text' placeholder='Số điện thoại' class='input-line full-width' name="phoneNumber" ngModel/>
-            <input type='password' placeholder='Mật khẩu' class='input-line full-width' name="password" ngModel/>
-          </div>
-          <div class="display-flex">
-            <input type='text' placeholder='Email' class='input-line full-width' name="email" ngModel/>
-            <input type='password' placeholder='Xác nhận mật khẩu' class='input-line full-width' name="confirmPassword" ngModel/>
           </div>
         </div>
         <div class='spacing spacing2'>đã có tài khoản <a routerLink="/login" class="highlight">đăng nhập</a></div>
         <!--  -->
-        <div><button class='ghost-round full-width' type="submit">Đăng kí</button></div>
+        <div style="display: flex;justify-content: center;"><button  mat-raised-button color="primary" type="submit" (click)="register()">Đăng kí</button></div>
       </form>
     </div>
     
