@@ -9,7 +9,7 @@
           <mat-error>Bạn cần điền trường này.</mat-error>
         </mat-form-field>    
         <mat-form-field>     
-          <input type='text' placeholder="Tên đăng nhập*" class='input-line full-width' formControlName="userName" matInput/>
+          <input type='text' placeholder="Tên đăng nhập*" class='input-line full-width' formControlName="userName" matInput [readonly]="!isAdd"/>
           <mat-error>Bạn cần điền trường này.</mat-error>
         </mat-form-field> 
       </div>
