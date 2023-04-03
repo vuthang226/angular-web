@@ -9,21 +9,22 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { HomeComponent } from './view/home/home.component';
+import { LoginComponent } from './view/login/login.component';
+import { RegisterComponent } from './view/register/register.component';
+import { UserDialogComponent } from './component/user-dialog/user-dialog.component';
 
 import { JwtHelperService , JWT_OPTIONS} from '@auth0/angular-jwt';
 import { HttpClientModule  } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -34,7 +35,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     LoginComponent,
     RegisterComponent,
     UserDialogComponent,
-    DeleteDialogComponent
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     MatButtonModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
     
   ],
   providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },{
@@ -56,6 +58,6 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     useValue: {}
   },{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
   bootstrap: [AppComponent],
-  entryComponents:[UserDialogComponent,DeleteDialogComponent]
+  entryComponents:[UserDialogComponent,ConfirmDialogComponent]
 })
 export class AppModule { }

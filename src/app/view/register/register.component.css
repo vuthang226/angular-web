@@ -9,7 +9,7 @@
     justify-content: space-between;
   }
   .login-view{
-    background: url('../../assets/img/backgroundLogin.jpg') no-repeat fixed;
+    background: url('../../../assets/img/backgroundLogin.jpg') no-repeat fixed;
     background-size: cover;
     height: calc(100vh);
   }

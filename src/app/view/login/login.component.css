@@ -126,7 +126,7 @@
     z-index: 1;
   }
   .login-view{
-    background: url('../../assets/img/backgroundLogin.jpg') no-repeat fixed;
+    background: url('../../../assets/img/backgroundLogin.jpg') no-repeat fixed;
     background-size: cover;
     height: calc(100vh);
   }

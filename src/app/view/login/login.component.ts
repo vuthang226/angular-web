@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../service/authentication/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
-    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('role');
 
   }
   onSubmit(f: NgForm) {
@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit{
         
         localStorage.setItem('token', d.data.jwtToken);
         localStorage.setItem('userName', d.data.userVm.userName);
-        localStorage.setItem('isAdmin', d.data.userVm.isAdmin);
-
-
+        localStorage.setItem('role', d.data.userVm.role);
         this.router.navigateByUrl('/');
       }else{
         this.errorMsg = d.message;
@@ -40,8 +38,6 @@ export class LoginComponent implements OnInit{
     },
     error => {
       this.errorMsg = "Đăng nhập không thành công"
-      console.log('oops', error);
-      //this.router.navigateByUrl('/login');
     }
 
     );

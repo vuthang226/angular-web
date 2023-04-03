@@ -38,9 +38,7 @@ export class AuthService {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
-    localStorage.removeItem("isAdmin");
-
- 
+    localStorage.removeItem("role");
   }
 
 

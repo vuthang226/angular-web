@@ -1,9 +1,10 @@
 import { Component,Inject,OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { FormGroup,FormBuilder,FormControl,Validators }   from '@angular/forms';
-import { UserService } from '../service/user/user.service';
-import { NotificationService } from '../service/notification.service';
+import { UserService } from '../../service/user/user.service';
+import { NotificationService } from '../../service/notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dialog',
@@ -19,20 +20,23 @@ export class UserDialogComponent implements OnInit {
     password : new FormControl(''),
     confirmPassword : new FormControl(''),
     userName : new FormControl(''),
-  });;
+  });
   isAdd: boolean;
   id: string;
   dialogName:string;
+  role:string;
 
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<UserDialogComponent>,
     private notificationService:NotificationService,
+    private router:Router,
     @Inject(MAT_DIALOG_DATA) data:any) {
     this.isAdd = data.isAdd;
     this.dialogName = data.isAdd ?'Thêm mới':'Cập nhật'
     this.id = data.id;
+    this.role = data.role;
   }
   ngOnInit() {
     if(this.isAdd){
@@ -83,18 +87,32 @@ export class UserDialogComponent implements OnInit {
           this.notificationService.warn('Có lỗi xảy ra');
         });
       }else{
-        this.userService.update(this.form.value.id,this.form.value).subscribe(res => {
-          if(res.success){
-            this.dialogRef.close(true);
-            this.notificationService.success(res.message);        
-          }else{
-            this.notificationService.warn(res.message);
-          }
-        },
-        (error:HttpErrorResponse) => {
-          console.log(error);
-          this.notificationService.warn('Có lỗi xảy ra');
-        });
+        if(this.role == "admin"||this.role=="writer"){
+          this.userService.update(this.form.value.id,this.form.value).subscribe(res => {
+            if(res.success){
+              this.dialogRef.close(true);
+              this.notificationService.success(res.message);        
+            }else{
+              this.notificationService.warn(res.message);
+            }
+            
+          },
+          (error) => {
+            if(error.status === 403){
+              this.notificationService.warn(error.error);
+            }else if(error.status ===401){
+              this.notificationService.warn(error.error);
+              this.dialogRef.close(true);
+              this.router.navigateByUrl("/login");
+            }else{
+              this.notificationService.warn('Có lỗi xảy ra');
+            }
+            
+          });
+        }else{
+          this.notificationService.warn('Bạn không có quyền chỉnh sửa thông tin');
+        }
+        
       }
     
     }else this.notificationService.warn('Dữ liệu không hợp lệ');

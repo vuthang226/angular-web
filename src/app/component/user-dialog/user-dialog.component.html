@@ -39,6 +39,6 @@
   
   <mat-dialog-actions>
       <button class="mat-raised-button" mat-button (click)="close()">Close</button>
-      <button class="mat-raised-button mat-primary" mat-button (click)="save()">Save</button>
+      <button class="mat-raised-button mat-primary" mat-button (click)="save()" [disabled]="role!='admin'&&role!='writer'&&!isAdd">Save</button>
   </mat-dialog-actions>
 
