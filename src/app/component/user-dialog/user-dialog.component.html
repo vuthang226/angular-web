@@ -5,40 +5,40 @@
     <div class='input-fields' >
       <div class="display-flex">
         <mat-form-field>
-          <input type='text' placeholder="Họ và Tên*" class='input-line full-width' formControlName="fullName" matInput/>
-          <mat-error>Bạn cần điền trường này.</mat-error>
+          <input type='text' placeholder="{{'HOME.fullName'|translate}}*" class='input-line full-width' formControlName="fullName" matInput/>
+          <mat-error>{{'HOME.required'|translate}}</mat-error>
         </mat-form-field>    
         <mat-form-field>     
-          <input type='text' placeholder="Tên đăng nhập*" class='input-line full-width' formControlName="userName" matInput [readonly]="!isAdd"/>
-          <mat-error>Bạn cần điền trường này.</mat-error>
+          <input type='text' placeholder="{{'HOME.userName'|translate}}*" class='input-line full-width' formControlName="userName" matInput [readonly]="!isAdd"/>
+          <mat-error>{{'HOME.required'|translate}}</mat-error>
         </mat-form-field> 
       </div>
       <div class="display-flex">      
         <mat-form-field>      
-          <input type='text' placeholder="Số điện thoại*" class='input-line full-width' formControlName="phoneNumber" matInput/>
-          <mat-error>Bạn cần điền trường này.</mat-error>
+          <input type='text' placeholder="{{'HOME.phoneNumber'|translate}}*" class='input-line full-width' formControlName="phoneNumber" matInput/>
+          <mat-error>{{'HOME.required'|translate}}</mat-error>
         </mat-form-field>
         <mat-form-field>     
           <input type='text' placeholder="Email*" class='input-line full-width' formControlName="email" matInput/>
-          <mat-error *ngIf="form.controls['email'].errors?.['required']">Bạn cần điền trường này.</mat-error>
-          <mat-error *ngIf="form.controls['email'].errors?.['email']">Email không hợp lệ.</mat-error>
+          <mat-error *ngIf="form.controls['email'].errors?.['required']">{{'HOME.required'|translate}}</mat-error>
+          <mat-error *ngIf="form.controls['email'].errors?.['email']">{{'HOME.invalidEmail'|translate}}</mat-error>
         </mat-form-field>
       </div>
       <div class="display-flex" *ngIf="isAdd">
         <mat-form-field>      
-          <input type='password' placeholder="Mật khẩu*" class='input-line full-width' formControlName="password" matInput/>
-          <mat-error>Bạn cần điền trường này.</mat-error>
+          <input type='password' placeholder="{{'HOME.password'|translate}}*" class='input-line full-width' formControlName="password" matInput/>
+          <mat-error>{{'HOME.required'|translate}}</mat-error>
         </mat-form-field>
         <mat-form-field>      
-          <input type='password' placeholder="Xác nhận mật khẩu*" class='input-line full-width' formControlName="confirmPassword" matInput/>
-          <mat-error>Bạn cần điền trường này.</mat-error>
+          <input type='password' placeholder="{{'HOME.confirmPassword'|translate}}*" class='input-line full-width' formControlName="confirmPassword" matInput/>
+          <mat-error>{{'HOME.required'|translate}}</mat-error>
         </mat-form-field>
       </div>
     </div>
   </mat-dialog-content>
   
   <mat-dialog-actions>
-      <button class="mat-raised-button" mat-button (click)="close()">Close</button>
-      <button class="mat-raised-button mat-primary" mat-button (click)="save()" [disabled]="role!='admin'&&role!='writer'&&!isAdd">Save</button>
+      <button class="mat-raised-button" mat-button (click)="close()">{{'HOME.close'|translate}}</button>
+      <button class="mat-raised-button mat-primary" mat-button (click)="save()" [disabled]="role!='admin'&&role!='writer'&&!isAdd">{{'HOME.save'|translate}}</button>
   </mat-dialog-actions>
 

@@ -1,0 +1,36 @@
+{
+  "LOGIN": {
+    "login": "Đăng nhập",
+    "register": "Đăng kí",
+    "userName": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "dontHaveAccount": "Chưa có tài khoản",
+    "loginFailure":"Đăng nhập không thành công"
+  },
+  
+  "HOME": {
+    "home": "Trang chủ",
+    "logout": "Thoát",
+    "userName": "Tên đăng nhập",
+    "mail": "Mail",
+    "fullName": "Họ và tên",
+    "action":"Hành động",
+    "rule": "Quyền",
+    "new": "Thêm mới",
+    "update":"Cập nhật",
+    "delete":"Xóa",
+    "phoneNumber":"Số điện thoại",
+    "reset":"Làm mới",
+    "error":"Có lỗi xảy ra",
+    "invalid":"Dữ liệu không hợp lệ",
+    "notPermission":"Bạn không có quyền chỉnh sửa thông tin",
+    "required":"Bạn cần điền trường này.",
+    "invalidEmail":"Email không đúng định dạng.",
+    "password":"Mật khẩu",
+    "confirmPassword":"Xác nhận mật khẩu",
+    "close":"Đóng",
+    "save":"Lưu"
+
+
+  }
+}

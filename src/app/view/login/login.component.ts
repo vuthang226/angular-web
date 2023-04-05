@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/authentication/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit{
   public errorMsg:string = '';
-  constructor(private auth:AuthService,private router:Router){}
+  constructor(private auth:AuthService,private router:Router,private translateService: TranslateService){}
   ngOnInit(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
@@ -32,16 +33,24 @@ export class LoginComponent implements OnInit{
       }else{
         this.errorMsg = d.message;
       }
-     
-      
-
     },
     error => {
-      this.errorMsg = "Đăng nhập không thành công"
+      this.errorMsg = this.translateService.instant('LOGIN.loginFailure');
     }
 
     );
   }
+  }
+
+  setLanguage(lang:string){
+    this.errorMsg = '';
+    if(lang=="vi"){
+      localStorage.setItem("culture","vi-VN");
+    }else{
+      localStorage.setItem("culture","en-US");
+    }
+    this.translateService.setDefaultLang(lang);
+    this.translateService.use(lang);
   }
   
 

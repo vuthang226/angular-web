@@ -1,0 +1,34 @@
+{
+  "LOGIN": {
+    "login": "Login",
+    "register": "Register",
+    "userName": "User Name",
+    "password": "Password",
+    "dontHaveAccount": "Don't have an account",
+    "loginFailure":"Login Failure"
+  },
+  
+  "HOME": {
+    "home": "Home",
+    "logout": "Logout",
+    "userName": "User Name",
+    "mail": "Mail",
+    "fullName": "Full Name",
+    "action":"Action",
+    "rule": "Rule",
+    "new": "New",
+    "update":"Update",
+    "delete":"Delete",
+    "phoneNumber":"Phone Number",
+    "reset":"Reset",
+    "error":"Have error",
+    "invalid":"Invalid data",
+    "notPermission":"You don't have permission",
+    "required":"Required",
+    "invalidEmail":"Email invalid",
+    "password":"Password",
+    "confirmPassword":"Confirm Password",
+    "close":"Close",
+    "save":"Save"
+  }
+}

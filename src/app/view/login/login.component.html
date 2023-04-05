@@ -4,28 +4,30 @@
     <div class='window'>
       <div class='overlay'></div>
       <div class='content-login'>
-        <div class='welcome'>Đăng nhập</div>
+        <div class='welcome' >{{'LOGIN.login'|translate}}</div>
         <div class="error-message" >
-                      {{errorMsg}}
+                      {{errorMsg }}
         </div>
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
         <div class='input-fields'>
           <mat-form-field>
-            <mat-label>Tên đăng nhập</mat-label>
+            <mat-label >{{'LOGIN.userName'|translate}}</mat-label>
             <input type='text'  class='input-line full-width' ngModel name="userName" matInput required/>
            
           </mat-form-field>  
           <mat-form-field>
-            <mat-label>Mật khẩu</mat-label>
+            <mat-label >{{'LOGIN.password'|translate}}</mat-label>
             <input type='password'  class='input-line full-width' ngModel name="password" matInput required/>
            
           </mat-form-field>  
           
         </div>
-        <div class='spacing'>chưa có tài khoản <a routerLink="/register" class="highlight">đăng kí</a></div>
+        <div class='spacing' ><div >{{'LOGIN.dontHaveAccount'|translate}}</div> <a routerLink="/register" class="highlight" >{{'LOGIN.register'|translate}}</a></div>
         <!--  -->
-        <div style="display: flex;justify-content: center;"><button mat-raised-button color="primary" type="submit">Đăng nhập</button></div>
+        <div style="display: flex;justify-content: center;"><button mat-raised-button color="primary" type="submit" >{{'LOGIN.login'|translate}}</button></div>
       </form>
+
+      <div style="display: flex;justify-content: center;margin-top: 12px;"><a (click)="setLanguage('vi')">vi&nbsp;</a>/<a  (click)="setLanguage('en')">&nbsp;en</a></div>
       </div>
       
     </div>

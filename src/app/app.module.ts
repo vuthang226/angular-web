@@ -10,6 +10,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import {TranslateModule,TranslateLoader, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
 
 
 
@@ -21,7 +25,7 @@ import { RegisterComponent } from './view/register/register.component';
 import { UserDialogComponent } from './component/user-dialog/user-dialog.component';
 
 import { JwtHelperService , JWT_OPTIONS} from '@auth0/angular-jwt';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule,HttpClient  } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
@@ -50,10 +54,17 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => { return new TranslateHttpLoader(http, './assets/i18n/', '.json'); },
+        deps: [HttpClient]
+      }
+    })
     
   ],
-  providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },{
+  providers: [TranslateService,{ provide: MAT_DIALOG_DATA, useValue: {} },{
     provide: MatDialogRef,
     useValue: {}
   },{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],

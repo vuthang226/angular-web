@@ -5,6 +5,7 @@ import { UserService } from '../../service/user/user.service';
 import { NotificationService } from '../../service/notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-dialog',
@@ -32,9 +33,10 @@ export class UserDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<UserDialogComponent>,
     private notificationService:NotificationService,
     private router:Router,
-    @Inject(MAT_DIALOG_DATA) data:any) {
+    @Inject(MAT_DIALOG_DATA) data:any,
+    private translateService:TranslateService) {
     this.isAdd = data.isAdd;
-    this.dialogName = data.isAdd ?'Thêm mới':'Cập nhật'
+    this.dialogName = data.isAdd ?this.translateService.instant('HOME.new'):this.translateService.instant('HOME.update')
     this.id = data.id;
     this.role = data.role;
   }
@@ -65,7 +67,7 @@ export class UserDialogComponent implements OnInit {
         }
       },    
       error => {
-        this.notificationService.warn('Có lỗi xảy ra');
+        this.notificationService.warn(this.translateService.instant('HOME.error'));
       });
     }
   }
@@ -84,7 +86,7 @@ export class UserDialogComponent implements OnInit {
         },
         error => {
           
-          this.notificationService.warn('Có lỗi xảy ra');
+          this.notificationService.warn(this.translateService.instant('HOME.error'));
         });
       }else{
         if(this.role == "admin"||this.role=="writer"){
@@ -105,17 +107,17 @@ export class UserDialogComponent implements OnInit {
               this.dialogRef.close(true);
               this.router.navigateByUrl("/login");
             }else{
-              this.notificationService.warn('Có lỗi xảy ra');
+              this.notificationService.warn(this.translateService.instant('HOME.error'));
             }
             
           });
         }else{
-          this.notificationService.warn('Bạn không có quyền chỉnh sửa thông tin');
+          this.notificationService.warn(this.translateService.instant('HOME.notPermission'));
         }
         
       }
     
-    }else this.notificationService.warn('Dữ liệu không hợp lệ');
+    }else this.notificationService.warn(this.translateService.instant('HOME.invalid'));
     
     
   }
